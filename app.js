@@ -4,6 +4,10 @@ var connect = require('connect'),
 	extend = require('extend'),
 	api = [];
 
+//Configuration
+var port = process.env.PORT || 3000;
+//EndConfiguration
+
 console.log('Loading API');
 var apiFolder = fs.readdirSync('./api');
 var re = /(?:\.([^.]+))?$/;
@@ -30,6 +34,6 @@ var app = connect()
 	});
 
 
-console.log('Server launched on port 3000');
-console.log('Visit http://localhost:3000');
-http.createServer(app).listen(3000);
+console.log('Server launched on port '+port);
+console.log('Visit http://localhost:'+port);
+http.createServer(app).listen(port);

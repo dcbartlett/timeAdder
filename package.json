@@ -12,5 +12,8 @@
     "connect": "^2.14.4",
     "jsdoc": "^3.3.0-alpha5",
     "extend": "^1.2.1"
+  },
+  "engines": {
+    "node": "0.10.x"
   }
 }
