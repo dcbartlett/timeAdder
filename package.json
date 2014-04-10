@@ -1,0 +1,14 @@
+{
+  "name": "TimeSystem",
+  "version": "0.0.0",
+  "description": "Dell Time Adder",
+  "main": "app.js",
+  "scripts": {
+    "test": "mocha -r spec test"
+  },
+  "author": "Dennis Bartlett",
+  "license": "GPL",
+  "dependencies": {
+    "connect": "^2.14.4"
+  }
+}
