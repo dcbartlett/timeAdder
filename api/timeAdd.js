@@ -1,17 +1,25 @@
-module.exports = function(startTime, addMinutes) {
-
-	// [H]H:MM {AM|PM}
-	// 9:23 AM + 10 = 9:33 AM
+/**
+ * Represents a book.
+ * @module
+ * @param {object} body - The body of the request.
+ */
+module.exports = function(body) {
+	var startTime = body.startTime,
+		addMinutes = body.addMinutes;
 	
-	var minutes = getTimeInMinutes(startTime);
+	var minutes = getTimeAsMinutes(startTime);
 	minutes = parseInt(minutes) + parseInt(addMinutes);
-	var timeArray = setTimeInMinutes(minutes);
+	var timeArray = getTimeAsString(minutes);
 
 	time = "" + timeArray[0][0] + ":" + timeArray[0][1] + " " + timeArray[1];
 	return time;
 };
 
-function getTimeInMinutes(timeString) {
+/**
+ * This function will convert a String time of [H]H:MM {AM|PM} to numeric minutes.
+ * @returns {Number}
+ */
+function getTimeAsMinutes(timeString) {
 	var timeArray = timeString.split(" ");
 	timeArray[0] = timeArray[0].split(":");
 
@@ -32,7 +40,13 @@ function getTimeInMinutes(timeString) {
 	minutes = parseInt(timeArray[0][0] * 60) + parseInt(timeArray[0][1]);
 	return minutes;
 }
-function setTimeInMinutes(minutes) {
+
+
+/**
+ * This function will convert a numeric minutes to a String time of [H]H:MM {AM|PM}.
+ * @returns {String}
+ */
+function getTimeAsString(minutes) {
 	var timeArray = [];
 	timeArray[0] = [];
 	timeArray[0][0] = parseInt(minutes/60);
