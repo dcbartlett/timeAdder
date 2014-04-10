@@ -1,4 +1,4 @@
-module.exports = function addTime(startTime, addMinutes) {
+module.exports = function(startTime, addMinutes) {
 
 	// [H]H:MM {AM|PM}
 	// 9:23 AM + 10 = 9:33 AM
