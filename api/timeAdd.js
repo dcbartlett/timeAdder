@@ -58,6 +58,7 @@ function getTimeAsString(minutes) {
 	}
 
 	timeArray[0][0] = parseInt(minutes/60);
+	// take the remainder of the minutes and check if its less than 10, if so, add a padding 0
 	timeArray[0][1] = parseInt(minutes%60) < 10? "0" + parseInt(minutes%60) : parseInt(minutes%60);
 	
 	if (timeArray[0][0] > 12) {
