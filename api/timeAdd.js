@@ -49,18 +49,21 @@ function getTimeAsMinutes(timeString) {
 function getTimeAsString(minutes) {
 	var timeArray = [];
 	timeArray[0] = [];
-	timeArray[0][0] = parseInt(minutes/60);
-	timeArray[0][1] = parseInt(minutes%60) < 10? "0" + parseInt(minutes%60) : parseInt(minutes%60);
 	timeArray[1] = parseInt(minutes/60) > 11? "PM" : "AM";
 	
 	if (minutes > 1439 ) {
-		minutes -= 1440;
+		var divideBy = parseInt(minutes/1440);
+		minutes -= 1440 * divideBy;
 		timeArray[1] = "AM";
 	}
 
+	timeArray[0][0] = parseInt(minutes/60);
+	timeArray[0][1] = parseInt(minutes%60) < 10? "0" + parseInt(minutes%60) : parseInt(minutes%60);
+	
 	if (timeArray[0][0] > 12) {
 		timeArray[0][0] = timeArray[0][0] - 12;
 	}
+
 	if (timeArray[1] == "AM") {
 		if (timeArray[0][0] === 0) {
 			timeArray[0][0] = 12;
