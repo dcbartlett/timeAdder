@@ -1,0 +1,39 @@
+<html>
+	<head>
+		<title>TimeAdder</title>
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+		<script>
+			function getTime(form) {
+				var TestVar = form.time.value;
+				$.ajax({
+					url: "/api/timeAdd",
+					type: "POST",
+					data: {
+						"startTime" : form.time.value,
+						"addMinutes" : form.minutes.value
+					},
+					dataType: "html",
+					success: function(data) {
+						$('#response').html(data);
+					},
+					error: function(jqxhr, status, error) {
+						$('#response').html('Error: '+error);
+					}
+				});
+			}
+		</script>
+	</head>
+	<body>
+		<div>Enter a time in the "Time" box below.  The format should be [H]H:MM {AM|PM}</div>
+		<div>E.G.  9:35 PM  or  11:15 AM</div>
+		<div>Enter a number of minutes to add to this time in the "Minutes" box.</div>
+		<form name="timeAdd">
+			<label>Time:</label>
+			<input type="text" name="time">
+			<label>Minutes:</label>
+			<input type="text" name="minutes">
+			<input type="button" value="Submit" onCLick="getTime(this.form)">
+		</form>
+		<div id="response"></div>
+	</body>
+</html>
