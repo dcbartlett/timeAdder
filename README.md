@@ -6,6 +6,13 @@ This application was created to add minutes to a time and get the new time.  If 
 
 This application has both an API and a Web Interface.  Both can be used and both return the same results.
 
+### Getting Started
+
+- Clone or Download the application.
+- cd into the directory
+- Run _npm install_
+- Run _node app.js_
+
 ### API
 
 The API is hosted at _**http://localhost:3000/api/**_
