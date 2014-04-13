@@ -1,6 +1,6 @@
 # TimeAdder
 
-This application was created to add minutes to a time and get the new time.  If you've got to be somewhere and know you should be there 45 minutes from now, you can put in the current time and 45 minutes and the application will return you the time you need to be at that place.
+This application was created to add/subtract minutes to a time and get the new time.  If you've got to be somewhere and know you should be there 45 minutes from now, you can put in the current time and 45 minutes and the application will return you the time you need to be at that place.
 
 ## Usage
 

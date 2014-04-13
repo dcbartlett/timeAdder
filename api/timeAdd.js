@@ -19,7 +19,10 @@ module.exports = function(body) {
 		}
 	}
 	if(!Type.is(addMinutes, Number)) {
-		return "Invalid Minutes Format";
+		addMinutes = parseInt(addMinutes);
+		if (isNaN(addMinutes)) {
+			return "Invalid Minutes Format";
+		}
 	}
 
 	var minutes = getTimeAsMinutes(startTime);
@@ -63,14 +66,11 @@ function getTimeAsMinutes(timeString) {
 function getTimeAsArray(minutes) {
 	var timeArray = [];
 	timeArray[0] = [];
-	timeArray[1] = parseInt(minutes/60) > 11? "PM" : "AM";
 	
-	if (minutes > 1439 ) {
-		var divideBy = parseInt(minutes/1440);
-		minutes -= 1440 * divideBy;
-		timeArray[1] = "AM";
-	}
+	var divideBy = parseInt(minutes/1440);
+	minutes -= 1440 * divideBy;
 
+	timeArray[1] = parseInt(minutes/60) > 11? "PM" : "AM";
 	timeArray[0][0] = parseInt(minutes/60);
 	// take the remainder of the minutes and check if its less than 10, if so, add a padding 0
 	timeArray[0][1] = parseInt(minutes%60) < 10? "0" + parseInt(minutes%60) : parseInt(minutes%60);
