@@ -4,16 +4,22 @@
   "description": "Dell Time Adder",
   "main": "app.js",
   "scripts": {
-    "test": "mocha -r spec test"
+    "test": "node_modules/mocha/bin/mocha test/unit/* && node_modules/mocha/bin/mocha test/integration/*",
+    "docs": "node ./node_modules/jsdoc/jsdoc.js api -r -d public/docs"
   },
   "author": "Dennis Bartlett",
   "license": "GPL",
   "dependencies": {
     "connect": "^2.14.4",
     "jsdoc": "^3.3.0-alpha5",
-    "extend": "^1.2.1"
+    "extend": "^1.2.1",
+    "type-of-is": "^3.2.0"
   },
   "engines": {
     "node": "0.10.x"
+  },
+  "devDependencies": {
+    "mocha": "^1.18.2",
+    "better-assert": "^1.0.0"
   }
 }

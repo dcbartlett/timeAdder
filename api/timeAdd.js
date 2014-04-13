@@ -1,17 +1,31 @@
+var Type = require("type-of-is");
 /**
- * Represents a book.
- * @module
+ * @module timeAdd
+ */
+
+/**
+ * This is the module function that will be accessable from the main app.
  * @param {object} body - The body of the request.
+ * @returns {String}
  */
 module.exports = function(body) {
 	var startTime = body.startTime,
-		addMinutes = body.addMinutes;
-	
+		addMinutes = body.addMinutes,
+		reg = /^(0?[1-9]|1[012])(:[0-5]\d) [APap][mM]$/;
+		
+	if(Type(startTime) != "[Function: String]") {
+		if (!(startTime.match(reg))) {
+			return "Invalid Time Format";
+		}
+	}
+	if(!Type.is(addMinutes, Number)) {
+		return "Invalid Minutes Format";
+	}
+
 	var minutes = getTimeAsMinutes(startTime);
 	minutes = parseInt(minutes) + parseInt(addMinutes);
-	var timeArray = getTimeAsString(minutes);
-
-	time = "" + timeArray[0][0] + ":" + timeArray[0][1] + " " + timeArray[1];
+	var timeArray = getTimeAsArray(minutes);
+	var time = getTimeAsString(timeArray);
 	return time;
 };
 
@@ -43,10 +57,10 @@ function getTimeAsMinutes(timeString) {
 
 
 /**
- * This function will convert a numeric minutes to a String time of [H]H:MM {AM|PM}.
+ * This function will convert a numeric minutes to an array of time.
  * @returns {String}
  */
-function getTimeAsString(minutes) {
+function getTimeAsArray(minutes) {
 	var timeArray = [];
 	timeArray[0] = [];
 	timeArray[1] = parseInt(minutes/60) > 11? "PM" : "AM";
@@ -72,4 +86,21 @@ function getTimeAsString(minutes) {
 	}
 	
 	return timeArray;
+}
+
+/**
+ * This function will convert an array of time to a String time of [H]H:MM {AM|PM}.
+ * @returns {String}
+ */
+function getTimeAsString(timeArray) {
+	time = "" + timeArray[0][0] + ":" + timeArray[0][1] + " " + timeArray[1];
+	return time;
+}
+
+if (process.env.environment == "test/unit") {
+	module.exports = {
+		getTimeAsMinutes: getTimeAsMinutes,
+		getTimeAsArray: getTimeAsArray,
+		getTimeAsString: getTimeAsString
+	};
 }
